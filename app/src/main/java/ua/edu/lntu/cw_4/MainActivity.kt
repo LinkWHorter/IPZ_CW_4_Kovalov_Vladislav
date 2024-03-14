@@ -26,7 +26,9 @@ import java.util.*
 import androidx.compose.ui.tooling.preview.Preview
 import ua.edu.lntu.cw_4.ui.theme.IPZ_CW_4_Kovalov_VladislavTheme
 import ua.edu.lntu.cw_4.model.Screen
+import ua.edu.lntu.cw_4.model.Screen.*
 import ua.edu.lntu.cw_4.model.Task
+import ua.edu.lntu.cw_4.model.Screen.TaskDetails as TaskDetails1
 import ua.edu.lntu.cw_4.tasks as tasks
 
 // Створення початкових даних
@@ -106,31 +108,23 @@ fun TaskDetailsScreen(taskId: Int, onBackClicked: () -> Unit, onTaskDone: (Int) 
 
 @Composable
 fun IPZ_CW_4_Kovalov_VladislavApp() {
-    var currentScreen by remember { mutableStateOf(Screen.TaskList) }
+    var currentScreen by remember { mutableStateOf(TaskList) }
     var selectedTaskId by remember { mutableStateOf(-1) }
 
     when (currentScreen) {
-        is Screen.TaskList -> {
+        is TaskList -> {
             TaskListScreen { taskId ->
                 selectedTaskId = taskId
-                currentScreen = Screen.TaskDetails
+                currentScreen = TaskDetails
             }
         }
-        is Screen.TaskDetails -> {
+        is TaskDetails -> {
             TaskDetailsScreen(taskId = selectedTaskId,
-                onBackClicked = { currentScreen = Screen.TaskList },
+                onBackClicked = { currentScreen = TaskList },
                 onTaskDone = { taskId ->
                     tasks.find { it.id == taskId }?.status = "Виконане завдання"
-                    currentScreen = Screen.TaskList
+                    currentScreen = TaskList
                 })
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    IPZ_CW_4_Kovalov_VladislavTheme {
-        Greeting("Android")
     }
 }
