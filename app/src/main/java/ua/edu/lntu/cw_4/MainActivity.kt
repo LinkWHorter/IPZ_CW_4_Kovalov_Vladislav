@@ -23,6 +23,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import ua.edu.lntu.cw_4.ui.theme.IPZ_CW_4_Kovalov_VladislavTheme
 import ua.edu.lntu.cw_4.model.Task
 
+// Створення початкових даних
+val tasks = listOf(
+    Task(1, "Завдання 1", "Опис завдання 1", "14/03/2024", "Активне завдання"),
+    Task(2, "Завдання 2", "Опис завдання 2", "15/03/2024", "Виконане завдання"),
+    Task(3, "Завдання 3", "Опис завдання 3", "16/03/2024", "Активне завдання")
+)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
