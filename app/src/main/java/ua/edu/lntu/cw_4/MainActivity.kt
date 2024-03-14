@@ -36,6 +36,7 @@ val tasks = listOf(
     Task(3, "Завдання 3", "Опис завдання 3", "16/03/2024", "Активне завдання")
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun TaskListScreen(onTaskSelected: (Int) -> Unit) {
@@ -106,23 +107,20 @@ fun TaskDetailsScreen(taskId: Int, onBackClicked: () -> Unit, onTaskDone: (Int) 
 
 @Composable
 fun IPZ_CW_4_Kovalov_VladislavApp() {
-    var currentScreen by remember { mutableStateOf(TaskList) }
+    var currentTaskListScreen by remember { mutableStateOf(true) }
     var selectedTaskId by remember { mutableStateOf(-1) }
 
-    when (currentScreen) {
-        is TaskList -> {
-            TaskListScreen { taskId ->
-                selectedTaskId = taskId
-                currentScreen = TaskList
-            }
+    if (currentTaskListScreen) {
+        TaskListScreen { taskId ->
+            selectedTaskId = taskId
+            currentTaskListScreen = false // Перехід до екрану TaskDetails
         }
-        is TaskList -> {
-            TaskDetailsScreen(taskId = selectedTaskId,
-                onBackClicked = { currentScreen = TaskList },
-                onTaskDone = { taskId ->
-                    tasks.find { it.id == taskId }?.status = "Виконане завдання"
-                    currentScreen = TaskList
-                })
-        }
+    } else {
+        TaskDetailsScreen(taskId = selectedTaskId,
+            onBackClicked = { currentTaskListScreen = true }, // Повернення на екран TaskList
+            onTaskDone = { taskId ->
+                tasks.find { it.id == taskId }?.status = "Виконане завдання"
+                currentTaskListScreen = true // Повернення на екран TaskList після завершення завдання
+            })
     }
 }
