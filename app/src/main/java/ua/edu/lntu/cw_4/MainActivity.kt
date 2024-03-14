@@ -28,8 +28,6 @@ import ua.edu.lntu.cw_4.ui.theme.IPZ_CW_4_Kovalov_VladislavTheme
 import ua.edu.lntu.cw_4.model.Screen
 import ua.edu.lntu.cw_4.model.Screen.*
 import ua.edu.lntu.cw_4.model.Task
-import ua.edu.lntu.cw_4.model.Screen.TaskDetails as TaskDetails1
-import ua.edu.lntu.cw_4.tasks as tasks
 
 // Створення початкових даних
 val tasks = listOf(
@@ -58,7 +56,7 @@ fun TaskListScreen(onTaskSelected: (Int) -> Unit) {
 }
 
 @Composable
-fun TaskItem(task: Int, onTaskSelected: (Int) -> Unit) {
+fun TaskItem(task: Task, onTaskSelected: (Int) -> Unit) {
     val backgroundColor = if (task.status == "Активне завдання") Color.Green else Color.Gray
     Column(
         modifier = Modifier
