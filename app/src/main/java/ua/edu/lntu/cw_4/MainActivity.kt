@@ -113,10 +113,10 @@ fun IPZ_CW_4_Kovalov_VladislavApp() {
         is TaskList -> {
             TaskListScreen { taskId ->
                 selectedTaskId = taskId
-                currentScreen = TaskDetails
+                currentScreen = TaskList
             }
         }
-        is TaskDetails -> {
+        is TaskList -> {
             TaskDetailsScreen(taskId = selectedTaskId,
                 onBackClicked = { currentScreen = TaskList },
                 onTaskDone = { taskId ->
