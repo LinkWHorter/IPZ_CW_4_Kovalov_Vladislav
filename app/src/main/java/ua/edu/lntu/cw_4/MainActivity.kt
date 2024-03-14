@@ -13,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -122,5 +123,30 @@ fun IPZ_CW_4_Kovalov_VladislavApp() {
                 tasks.find { it.id == taskId }?.status = "Виконане завдання"
                 currentTaskListScreen = true // Повернення на екран TaskList після завершення завдання
             })
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PreviewTaskList() {
+    IPZ_CW_4_Kovalov_VladislavTheme {
+        TaskListScreen(onTaskSelected = {})
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PreviewTaskDetails() {
+    IPZ_CW_4_Kovalov_VladislavTheme {
+        TaskDetailsScreen(taskId = 1, onBackClicked = {}, onTaskDone = {})
+    }
+}
+
+@Preview
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PreviewApp() {
+    IPZ_CW_4_Kovalov_VladislavTheme {
+        IPZ_CW_4_Kovalov_VladislavApp()
     }
 }
