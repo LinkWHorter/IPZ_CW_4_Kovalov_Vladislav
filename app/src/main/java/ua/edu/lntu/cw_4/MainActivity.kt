@@ -150,3 +150,4 @@ fun PreviewApp() {
         IPZ_CW_4_Kovalov_VladislavApp()
     }
 }
+//Повністю виконанне завдання, фінальний варіант роботи..
